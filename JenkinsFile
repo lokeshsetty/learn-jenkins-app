@@ -1,0 +1,22 @@
+
+pipeline {
+    agent any 
+
+    stages {
+        stage('Hello') {
+            agent {
+                docker {
+                    // Fixed: Removed the colon and added quotes around the image name
+                    image 'node:18-alpine' 
+                }
+            }
+            steps {
+                echo 'Setting up the npm for the project with docker'
+                sh '''
+                echo "Lets try now" 
+                npm --version
+                '''
+            }
+        }
+    }
+}
